@@ -1,0 +1,23 @@
+# Java / Gradle / Maven
+target/
+build/
+.gradle/
+*.class
+
+# .NET
+bin/
+obj/
+*.user
+
+# IDEs
+.idea/
+.vs/
+.vscode/*
+!.vscode/extensions.json
+
+# Entorno local y secretos
+.env
+*.log
+
+# Obsidian (configuración local de la bóveda)
+docs/.obsidian/workspace*.json
