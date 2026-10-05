@@ -34,23 +34,36 @@ Bitácora personal del proyecto. Se completa en los **15 minutos de cierre** de 
 
 <!-- Las entradas más recientes van arriba. -->
 
+### 2026-10-05 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Construcción
+- **Tiempo real:** 1h 6m  (estimado: 2,5 h)
+- **Qué construí:**
+  - Estructura del monorepo, plantilla de Pull Request (PR), convención de commits y primer push.
+- **Qué aprendí:**
+  - Un ADR aceptado no se edita; se reemplaza por otro, así queda la historia de por qué cambió.
+- **Explícalo en 3 frases:** Un monorepo guarda todos los servicios juntos para versionar los contratos y documentación. Un ADR registra una decisión arquitectónica y su motivo para no discutirla dos veces. Las invariantes son las reglas que no se rompen sin un ADR.
+- **Decisión tomada / ADR:** ninguna todavía.
+- **Lo que me bloqueó o me sorprendió:** Me sorprendió la manera estructurada de organizar un proyecto grande; son muchos pasos, sin embargo, me puedo acostumbrar fácilmente a esta metodología ágil.
+- **Pregunta abierta:** ¿Cómo automatizo INV-01 con ArchUnit?
+- **Primer paso de mañana:** docker-compose corregido y `docker compose ps` con 4 servicios healthy.
 
-
-| INV-02 | **Solo el Ledger modifica saldos**. PostgreSQL es de su propiedad exclusiva                                           |
-| ------ | --------------------------------------------------------------------------------------------------------------------- |
-| INV-03 | Todo cambio de saldo ocurre en **una única transacción ACID** que bloquea las cuentas en **orden ascendente de `Id`** |
-| INV-04 | La idempotencia tiene **dos barreras**: Redis (Ingesta) y PK del asiento (Ledger). Ninguna se elimina sin ADR         |
-|        |                                                                                                                       |
+### 2026-10-04 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Aprendizaje
+- **Tiempo real:** 4h  (estimado: 30 min)
+- **Qué aprendí:**
+  - Entendí cómo se estructura un ADR por dentro, me di cuenta que habían términos nuevos para mí y me puse a investigarlos y los anoté para recordarlos. Después de leer este ADR-0001 lo terminé aceptando sin modificaciones.
+- **Explícalo en 3 frases:** Aprendí sobre el registro que se lleva de las decisiones arquitectónicas tomadas, leí a detalle cada una de las invariantes o reglas que se establecen y las acepté. Existieron conceptos nuevos para mí como diagrama C4, procedimientos remotos, message broker, AMPQ, Integración Continua, cómo ArchUnit puede automatizar que un servicio no se conecte a bases de datos a las que no debería tener acceso, entre otros conceptos.
+- **Decisión tomada / ADR:** Se acepta ADR-0001.
+- **Lo que me bloqueó o me sorprendió:** Me sorprendió que cuando más iba leyendo sobre un texto o tema en específico habían términos que jamás había escuchado y eso me obligaba a ir a buscarlos y unir los conceptos y volver al texto para entenderlo y que tenga significado para mí. Esta tarea de media hora me llevó mucho más tiempo del que había estimado.
+- **Primer paso de mañana:** poner docker compose en el repo, levantar infra, comprobar cada motor funcionando y redactar un ADR-0002
 
 ### 2026-10-01 · D00A · SCRUM-23 · Repo monorepo y gobernanza base
-- **Tiempo real:** 2,5 h  (estimado: 2,5 h)
+- **Tiempo real:** 1h 6m  (estimado: 2,5 h)
 - **Qué construí:**
-  - Estructura del monorepo, plantilla de PR, convención de commits y primer push.
-- **Qué aprendí (con mis palabras):**
+  - Estructura del monorepo, plantilla de Pull Request (PR), convención de commits y primer push.
+- **Qué aprendí:**
   - Un ADR aceptado no se edita; se reemplaza por otro, así queda la historia de por qué cambió.
-- **Explícalo en 3 frases:** Un monorepo guarda todos los servicios juntos para versionar contratos y documentación a la par. Un ADR registra una decisión y su motivo para no discutirla dos veces. Las invariantes son las reglas que no se rompen sin un ADR.
-- **Decisión tomada / ADR:** ninguna todavía (ADR-0001 y 0002 en D00B).
-- **Lo que me bloqueó o me sorprendió:** 
+- **Explícalo en 3 frases:** Un monorepo guarda todos los servicios juntos para versionar los contratos y documentación. Un ADR registra una decisión arquitectónica y su motivo para no discutirla dos veces. Las invariantes son las reglas que no se rompen sin un ADR.
+- **Decisión tomada / ADR:** ninguna todavía.
+- **Lo que me bloqueó o me sorprendió:** Me sorprendió la manera estructurada de organizar un proyecto grande; son muchos pasos, sin embargo, me puedo acostumbrar fácilmente a esta metodología ágil.
 - **Pregunta abierta:** ¿Cómo automatizo INV-01 con ArchUnit?
 - **Primer paso de mañana:** docker-compose corregido y `docker compose ps` con 4 servicios healthy.
 
@@ -109,7 +122,7 @@ Términos que fui aprendiendo, con mis palabras.
 
 | Término | Mi definición | Día en que lo vi |
 |---|---|---|
-| Idempotencia | | |
+| Idempotencia | Propiedad de una operación que permite aplicarla varias veces sin cambiar el resultado obtenido después de la primera operación | 2026-10-04 |
 | Backpressure | | |
 | Publisher confirm | | |
 | Deadline (gRPC) | | |

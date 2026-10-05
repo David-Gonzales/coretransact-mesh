@@ -243,24 +243,24 @@ git remote add origin <URL-del-repositorio>
 git push -u origin main
 ```
 
-- [ ] Primer commit hecho y subido.
+- [x] Primer commit hecho y subido.
 
 ---
 
 ## Bloque 3 — Cierre (15 min)
 
-- [ ] Mover **SCRUM-23** a *Hecho* en Jira.
-- [ ] Registrar el tiempo real en la historia (*Log work*): te servirá para recalibrar el plan en la semana 1.
-- [ ] Completar tu entrada de hoy en `LEARNING.md`.
-- [ ] Anotar en `LEARNING.md` el **primer paso de mañana**: D00B (docker-compose corregido, `docker compose ps` con 4 servicios *healthy*, y redacción de ADR-0001 y ADR-0002).
+- [x] Mover **SCRUM-23** a *Hecho* en Jira.
+- [x] Registrar el tiempo real en la historia (*Log work*): te servirá para recalibrar el plan en la semana 1.
+- [x] Completar tu entrada de hoy en `LEARNING.md`.
+- [x] Anotar en `LEARNING.md` el **primer paso de mañana**: D00B (docker-compose corregido, `docker compose ps` con 4 servicios *healthy*, y redacción de ADR-0001 y ADR-0002).
 
 ## Criterios de aceptación del día
 
-- [ ] El repositorio tiene la estructura acordada y está en GitHub.
-- [ ] `/docs` abre como bóveda de Obsidian con los enlaces funcionando.
-- [ ] Existen: plantilla de PR, `.gitignore`, `.editorconfig`, `README.md`, `LEARNING.md`.
-- [ ] La convención de ramas y commits está escrita.
-- [ ] SCRUM-23 está cerrada con el tiempo real registrado.
+- [x] El repositorio tiene la estructura acordada y está en GitHub.
+- [x] `/docs` abre como bóveda de Obsidian con los enlaces funcionando.
+- [x] Existen: plantilla de PR, `.gitignore`, `.editorconfig`, `README.md`, `LEARNING.md`.
+- [x] La convención de ramas y commits está escrita.
+- [x] SCRUM-23 está cerrada con el tiempo real registrado.
 
 ## Si te quedas corto de tiempo
 
