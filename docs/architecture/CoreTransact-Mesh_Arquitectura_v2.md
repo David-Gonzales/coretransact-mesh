@@ -1,6 +1,6 @@
 
 ---
-## Título: CoreTransact-Mesh — Documento de Arquitectura 
+## Título: CoreTransact-Mesh — Documento de Arquitectura
 Versión: 2
 Estado: Vigente
 Fecha: 2026-09-30
@@ -12,7 +12,7 @@ Tags: [arquitectura, coretransact-mesh, microservicios, eda, cqrs]
 Especificación técnica, diseño arquitectónico y de datos para la implementación local de **CoreTransact-Mesh**.
 
 > [!info] Documentos relacionados
-> 
+>
 > - [[Invariantes-Arquitectonicas]] — reglas que no se rompen sin un ADR
 > - [[ADR-Indice]] — decisiones de arquitectura (plan y estado)
 > - [[ADR-0000-plantilla]] — plantilla para nuevos ADRs
