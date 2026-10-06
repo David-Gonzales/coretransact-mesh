@@ -34,24 +34,28 @@ Bitácora personal del proyecto. Se completa en los **15 minutos de cierre** de 
 
 <!-- Las entradas más recientes van arriba. -->
 
-### 2026-10-05 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Construcción
-- **Tiempo real:** 1h 6m  (estimado: 2,5 h)
+### 2026-10-05 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Construcción, redacción de ADR-0002 y cierre
+- **Tiempo real:** Construcción: 30min  (estimado: 1h 45min) | Redacción ADR-0002: 2h (estimado: 55min) | Total: 2h 30min
 - **Qué construí:**
-  - Estructura del monorepo, plantilla de Pull Request (PR), convención de commits y primer push.
+  - Construí el docker-compose.yml para 4 contenedores de infra: redis, rabbitmq, postgres y mongodb. Levanté los contenedores y comprobé que cada motor responde.
 - **Qué aprendí:**
-  - Un ADR aceptado no se edita; se reemplaza por otro, así queda la historia de por qué cambió.
+  - Aprendí los comandos básicos para levantar y apagar los contenedores. Un detalle importante es que hay que entender bien la diferencia entre `down` y `down -v`:
+    ```powershell
+    - docker compose -f infra/docker-compose.yml down        # apaga y conserva los datos (volúmenes)
+    - docker compose -f infra/docker-compose.yml down -v     # apaga y BORRA los datos
+    ```
+  - Aprendí a escribir mejor un ADR pasándole a un modelo de IA (Claude) para que lo revise y me genere feedback, esto me llevó mucho más tiempo del previsto
 - **Explícalo en 3 frases:** Un monorepo guarda todos los servicios juntos para versionar los contratos y documentación. Un ADR registra una decisión arquitectónica y su motivo para no discutirla dos veces. Las invariantes son las reglas que no se rompen sin un ADR.
-- **Decisión tomada / ADR:** ninguna todavía.
+- **Decisión tomada / ADR:** ADR-0002 Aceptada.
 - **Lo que me bloqueó o me sorprendió:** Me sorprendió la manera estructurada de organizar un proyecto grande; son muchos pasos, sin embargo, me puedo acostumbrar fácilmente a esta metodología ágil.
-- **Pregunta abierta:** ¿Cómo automatizo INV-01 con ArchUnit?
-- **Primer paso de mañana:** docker-compose corregido y `docker compose ps` con 4 servicios healthy.
+
 
 ### 2026-10-04 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Aprendizaje
 - **Tiempo real:** 4h  (estimado: 30 min)
 - **Qué aprendí:**
   - Entendí cómo se estructura un ADR por dentro, me di cuenta que habían términos nuevos para mí y me puse a investigarlos y los anoté para recordarlos. Después de leer este ADR-0001 lo terminé aceptando sin modificaciones.
 - **Explícalo en 3 frases:** Aprendí sobre el registro que se lleva de las decisiones arquitectónicas tomadas, leí a detalle cada una de las invariantes o reglas que se establecen y las acepté. Existieron conceptos nuevos para mí como diagrama C4, procedimientos remotos, message broker, AMPQ, Integración Continua, cómo ArchUnit puede automatizar que un servicio no se conecte a bases de datos a las que no debería tener acceso, entre otros conceptos.
-- **Decisión tomada / ADR:** Se acepta ADR-0001.
+- **Decisión tomada / ADR:** ADR-0001 Aceptada.
 - **Lo que me bloqueó o me sorprendió:** Me sorprendió que cuando más iba leyendo sobre un texto o tema en específico habían términos que jamás había escuchado y eso me obligaba a ir a buscarlos y unir los conceptos y volver al texto para entenderlo y que tenga significado para mí. Esta tarea de media hora me llevó mucho más tiempo del que había estimado.
 - **Primer paso de mañana:** poner docker compose en el repo, levantar infra, comprobar cada motor funcionando y redactar un ADR-0002
 
