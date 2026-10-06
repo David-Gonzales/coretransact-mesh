@@ -166,7 +166,7 @@ Cabeceras AMQP obligatorias: `messageId`, `correlationId` (= `transactionId`), `
   "transactionId": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "accountSource": "ACCOUNT-PERU-001",
   "accountDestination": "ACCOUNT-PERU-002",
-  "amount": 150050,
+  "amount": 1500.50,
   "currency": "PEN",
   "timestamp": "2026-09-30T19:25:00Z",
   "validation": "VERIFIED"
@@ -182,8 +182,8 @@ Cabeceras AMQP obligatorias: `messageId`, `correlationId` (= `transactionId`), `
   "transactionId": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "status": "COMPLETED",
   "entries": [
-    { "account": "ACCOUNT-PERU-001", "type": "DEBIT",  "amount": 150050 },
-    { "account": "ACCOUNT-PERU-002", "type": "CREDIT", "amount": 150050 }
+    { "account": "ACCOUNT-PERU-001", "type": "DEBIT",  "amount": 1500.50 },
+    { "account": "ACCOUNT-PERU-002", "type": "CREDIT", "amount": 1500.50 }
   ],
   "currency": "PEN",
   "processedAt": "2026-09-30T19:25:02Z",
