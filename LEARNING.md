@@ -41,20 +41,21 @@ Bitácora personal del proyecto. Se completa en los **15 minutos de cierre** de 
 - **Qué aprendí:**
   - Aprendí los comandos básicos para levantar y apagar los contenedores. Un detalle importante es que hay que entender bien la diferencia entre `down` y `down -v`:
     ```powershell
-    - docker compose -f infra/docker-compose.yml down        # apaga y conserva los datos (volúmenes)
-    - docker compose -f infra/docker-compose.yml down -v     # apaga y BORRA los datos
+    docker compose -f infra/docker-compose.yml down        # apaga y conserva los datos (volúmenes)
+    docker compose -f infra/docker-compose.yml down -v     # apaga y BORRA los datos
     ```
   - Aprendí a escribir mejor un ADR pasándole a un modelo de IA (Claude) para que lo revise y me genere feedback, esto me llevó mucho más tiempo del previsto
-- **Explícalo en 3 frases:** Un monorepo guarda todos los servicios juntos para versionar los contratos y documentación. Un ADR registra una decisión arquitectónica y su motivo para no discutirla dos veces. Las invariantes son las reglas que no se rompen sin un ADR.
+- **Explícalo en 3 frases:** Un healthcheck es muy importante al momento de levantar contenedores ya que nos permite comprobar que hay una conexión entre la petición y la respuesta. Además terminé eligiendo un stack políglota (Java 21 + WebFlux para Ingesta y .NET para Ledger y Conciliación) a un stack de solo Java o solo .NET como valor formativo y de portafolio y además porque cada plataforma logra encajar con el servicio asignado (WebFlux para la entrada de alta concurrencia limitada por E/S y .NET con arquitectura limpia y CQRS para el dominio contable). Aprendí que para reemplazar un ADR aceptado como el ADR-0002 debo crear un nuevo ADR y no editar el ADR aceptado por eso es importante poner mucha atención cuando se va a aceptar un ADR y si llega el momento de necesitar cambiar algo o reemplazar un ADR aceptado se debería crear uno con el estado de "Reemplaza a ADR-XX".
 - **Decisión tomada / ADR:** ADR-0002 Aceptada.
 - **Lo que me bloqueó o me sorprendió:** Me sorprendió la manera estructurada de organizar un proyecto grande; son muchos pasos, sin embargo, me puedo acostumbrar fácilmente a esta metodología ágil.
+- **Primer paso de mañana:** fusionar el PR de D00B, cerrar SCRUM-24 y empezar D01 (WebFlux hexagonal); verificar JDK 21.
 
 
 ### 2026-10-04 · D00B · SCRUM-24 · Docker compose corregido y verificación de infraestructura · Aprendizaje
 - **Tiempo real:** 4h  (estimado: 30 min)
 - **Qué aprendí:**
   - Entendí cómo se estructura un ADR por dentro, me di cuenta que habían términos nuevos para mí y me puse a investigarlos y los anoté para recordarlos. Después de leer este ADR-0001 lo terminé aceptando sin modificaciones.
-- **Explícalo en 3 frases:** Aprendí sobre el registro que se lleva de las decisiones arquitectónicas tomadas, leí a detalle cada una de las invariantes o reglas que se establecen y las acepté. Existieron conceptos nuevos para mí como diagrama C4, procedimientos remotos, message broker, AMPQ, Integración Continua, cómo ArchUnit puede automatizar que un servicio no se conecte a bases de datos a las que no debería tener acceso, entre otros conceptos.
+- **Explícalo en 3 frases:** Un ADR es un Registro de una desición arquitectónica, este registro guarda muchos parámetros importantes que deben cumplirse una vez aprobado el ADR, si un ADR que ya ha sido aprobado requiere cambios no se debe editar, se debe crear un nuevo ADR que lo reemplace. Esto con la finalidad de evitar erosionar la arquitectura del sistema. Un ADR se diferencia de una Invariante en que el primero solo es un registro que puede llegar a cambiar con el tiempo mientras que una Invariante es una regla que debe cumplirse.
 - **Decisión tomada / ADR:** ADR-0001 Aceptada.
 - **Lo que me bloqueó o me sorprendió:** Me sorprendió que cuando más iba leyendo sobre un texto o tema en específico habían términos que jamás había escuchado y eso me obligaba a ir a buscarlos y unir los conceptos y volver al texto para entenderlo y que tenga significado para mí. Esta tarea de media hora me llevó mucho más tiempo del que había estimado.
 - **Primer paso de mañana:** poner docker compose en el repo, levantar infra, comprobar cada motor funcionando y redactar un ADR-0002
@@ -77,7 +78,7 @@ Bitácora personal del proyecto. Se completa en los **15 minutos de cierre** de 
 
 | Semana | Días | Horas reales | Horas estimadas | Desviación | Notas |
 |---|---|---|---|---|---|
-| S0 | D00A-D00B | | 5 | | |
+| S0 | D00A-D00B | 7,6 | 5 | +52 % | Aprender conceptos nuevos (ADR, C4, AMQP, CI) tomó mucho más de lo estimado; la construcción fue más rápida |
 | S1 · sem 1 | D01-D05 | | 12,5 | | |
 | S1 · sem 2 | D06-D10 | | 12,5 | | |
 | S2 · sem 1 | D11-D15 | | 12,5 | | |
@@ -116,7 +117,7 @@ Cosas que no entendí del todo. Al resolver una, tacha la pregunta y escribe la 
 
 | Fecha | Pregunta | Estado | Respuesta / recurso |
 |---|---|---|---|
-| | | Abierta | |
+| 2026-10-01 | ¿Cómo automatizo INV-01 con ArchUnit? | Cerrada | Se aborda en D10 (reglas ArchUnit) |
 
 ---
 
@@ -126,12 +127,14 @@ Términos que fui aprendiendo, con mis palabras.
 
 | Término | Mi definición | Día en que lo vi |
 |---|---|---|
-| Idempotencia | Propiedad de una operación que permite aplicarla varias veces sin cambiar el resultado obtenido después de la primera operación | 2026-10-04 |
-| Backpressure | | |
-| Publisher confirm | | |
-| Deadline (gRPC) | | |
-| Circuit breaker | | |
-| Partida doble | | |
+| Idempotencia | Es la propiedad de una operación que permite aplicarla varias veces sin cambiar el resultado obtenido después de la primera operación, por ejemplo, cuando consulto mi saldo, esta operación tiene que ser idempotente, ya que sin importar cuántas veces se ejecute esta operación el resultado no debería cambiar | 2026-10-04 |
+| Diagrama C4 |Es un conjunto de diagramas de arquitectura de software que sirve para visualizar y documentar cómo está estructurado el sistema y cómo interactúan sus partes. Tiene 4 niveles: Contexto, Contenedores, Componentes y Código | 2026-10-04 |
+| RPC/gRPC |Es un framework de Google de código abierto que sirve para llamadas a procedimientos remotos (RPC) y que permite una comunicación eficiente entre servicios distribuidos usando HTTP/2 y Protocol Buffers en código binario. A diferencia de una API Rest donde se usa el formato JSON y HTTP/1 gRCP utiliza un formato binario junto con un .proto que define el contrato de estas llamadas | 2026-10-04 |
+| Message Broker | Es un intermediario de mensajería (middleware) que toma mensajes de productores, los enruta mediante colas y los entrega a consumidores resuleve el problema de Ingesta y Ledger, si uno de estos servicios cae, el que envía un mensaje no lo hace ya que el middleware se ha encargado de colocar el mensaje en una cola, ahí tendrá que esperar a que el consumidor responda cuando levante o en todo caso devolver una respuesta negativa, pero sin afectar al otro servicio que está bien | 2026-10-04 |
+| AMQP |Protocolo de cola de mensajería avanzada. Este es el protocolo que utiliza RabbitMQ quien conecta los tres servicios: Ingesta, Ledger y Conciliación | 2026-10-04 |
+| Integración Continua (CI) | Es lo que hace cumplir mis invariantes sin depender de mi memoria. En cada Push que hago a una rama remota un servidor lo compila y ejecuta automáticamente las pruebas y verificaciones, y me avisa si algo falla. Por ejemplo, en mi proyecto GitHub Actions compilaría Java con JDK 21 y .NET con su SDK y ejecutaría tests, ArchUnit y NetArchTest. Si algo falla, el PR no se fusiona | 2026-10-04 |
+| ArchUnit | Verifica reglas como por ejemplo, que Ingesta nunca acceda a PostgreSQL ni a MongoDB. Lo que hace esta prueba unitaria es hacer cumplor que el servicio de Ingesta no tenga dependencias a drivers de estos contenedores  | 2026-10-04 |
+
 
 ---
 
