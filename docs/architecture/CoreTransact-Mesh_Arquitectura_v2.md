@@ -166,7 +166,7 @@ Cabeceras AMQP obligatorias: `messageId`, `correlationId` (= `transactionId`), `
   "transactionId": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "accountSource": "ACCOUNT-PERU-001",
   "accountDestination": "ACCOUNT-PERU-002",
-  "amountMinor": 150050,
+  "amount": 150050,
   "currency": "PEN",
   "timestamp": "2026-09-30T19:25:00Z",
   "validation": "VERIFIED"
@@ -182,8 +182,8 @@ Cabeceras AMQP obligatorias: `messageId`, `correlationId` (= `transactionId`), `
   "transactionId": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
   "status": "COMPLETED",
   "entries": [
-    { "account": "ACCOUNT-PERU-001", "type": "DEBIT",  "amountMinor": 150050 },
-    { "account": "ACCOUNT-PERU-002", "type": "CREDIT", "amountMinor": 150050 }
+    { "account": "ACCOUNT-PERU-001", "type": "DEBIT",  "amount": 150050 },
+    { "account": "ACCOUNT-PERU-002", "type": "CREDIT", "amount": 150050 }
   ],
   "currency": "PEN",
   "processedAt": "2026-09-30T19:25:02Z",
@@ -233,7 +233,7 @@ message ValidateAccountsResponse {
 CREATE TABLE "Cuentas" (
     "Id"        VARCHAR(50)    PRIMARY KEY,
     "ClienteId" VARCHAR(50)    NOT NULL,
-    "Saldo"     BIGINT         NOT NULL CHECK ("Saldo" >= 0),
+    "Saldo"     NUMERIC(18, 4) NOT NULL CHECK ("Saldo" >= 0),
     "Moneda"    CHAR(3)        NOT NULL,
     "Estado"    VARCHAR(20)    NOT NULL DEFAULT 'ACTIVE',
     "Version"   INT            NOT NULL DEFAULT 0   -- concurrencia optimista (opcional)
@@ -253,7 +253,7 @@ CREATE TABLE "LineasAsiento" (
     "AsientoId" UUID           NOT NULL REFERENCES "AsientosContables" ("Id"),
     "CuentaId"  VARCHAR(50)    NOT NULL REFERENCES "Cuentas" ("Id"),
     "Tipo"      CHAR(1)        NOT NULL CHECK ("Tipo" IN ('D', 'C')),
-    "Monto"     BIGINT         NOT NULL CHECK ("Monto" > 0)
+    "Monto"     NUMERIC(18, 4) NOT NULL CHECK ("Monto" > 0)
 );
 ```
 

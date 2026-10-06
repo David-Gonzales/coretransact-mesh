@@ -23,7 +23,6 @@ Plan inicial de decisiones de arquitectura. Cada fila se convierte en un archivo
 | ADR-0010 | Modelo de lectura de estado de transferencias en Redis                                 | Pre-decidida | S5     | INV-01                 |
 | ADR-0011 | Transactional Outbox en el Ledger (opcional)                                           | Opcional     | S5     | INV-10                 |
 | ADR-0012 | Observabilidad: correlation id y OpenTelemetry                                         | Pendiente    | S5     | INV-09                 |
-| ADR-0013 | Representación de importes y fechas                                                    | Pendiente    | S2     | INV-07, 18, 19         |
 
 ## Reglas
 
