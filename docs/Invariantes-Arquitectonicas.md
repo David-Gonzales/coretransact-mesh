@@ -1,4 +1,3 @@
-
 ---
 
 ## Título: Invariantes Arquitectónicas — CoreTransact-Mesh

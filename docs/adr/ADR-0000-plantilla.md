@@ -1,17 +1,16 @@
-
 ---
-Id: ADR-0000 
-Titulo: Plantilla de ADR (copiar y renombrar a ADR-XXXX-titulo-corto.md) 
+Id: ADR-0000
+Titulo: Plantilla de ADR (copiar y renombrar a ADR-XXXX-titulo-corto.md)
 Estado: Propuesto
 Fecha: AAAA-MM-DD
-Decisores: [David] 
+Decisores: [David]
 Tags: [adr]
 
 
 # ADR-XXXX: Título corto de la decisión
 
 > [!tip] Cómo usar esta plantilla
-> 
+>
 > - Una decisión por ADR. Escríbelo **antes** de implementar (estado `Propuesto`) y pásalo a `Aceptado` al decidir.
 > - Un ADR aceptado **no se edita** para cambiar la decisión: se crea uno nuevo que lo reemplaza y se actualiza el estado del anterior.
 > - Máximo una página. Si necesitas más, enlaza a notas de apoyo.

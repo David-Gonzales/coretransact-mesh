@@ -1,4 +1,3 @@
-
 ---
 ## Título: CoreTransact-Mesh — Documento de Arquitectura
 Versión: 2

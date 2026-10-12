@@ -1,4 +1,3 @@
-
 ---
 
 Título: Índice de ADRs — CoreTransact-Mesh

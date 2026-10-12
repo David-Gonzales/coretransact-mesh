@@ -41,7 +41,7 @@ El equipo de desarrollo tiene instalado OpenJDK 25 (LTS) y debe decidir también
 - **Compatibilidad de herramientas** del proyecto: BlockHound (INV-14), ArchUnit, Testcontainers, plugin de Protobuf.
 - **Riesgo de aprendizaje:** el proyecto ya introduce varias tecnologías nuevas a la vez.
 - **Material de aprendizaje disponible** (muchos tutoriales son de Spring Boot 3).
-- **Reproducibilidad:** que cualquiera construya el proyecto con la misma versión de JDK y de Gradle.****
+- **Reproducibilidad:** que cualquiera construya el proyecto con la misma versión de JDK y de Gradle.
 
 ## 3. Opciones consideradas
 

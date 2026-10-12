@@ -7,6 +7,7 @@ decisores:
   - David
 reemplaza: ""
 reemplazado_por: ""
+refinado por: ADR-0013, ADR-0014
 servicios:
   - ingesta
   - ledger
@@ -26,7 +27,7 @@ tags:
 
 ## 1. Contexto
 
-CoreTransact-Mesh podría construirse con un solo lenguaje (ya sea .NET o Java) y esa sería la opción más simple, económica y rápida de mantener para un sistema nuevo. Sin embargo, este proyecto tiene un objetivo formativo y de portafolio: aprender Java 21 con Spring WebFlux (programación reactiva), practicar .NET 10 en servicios transaccionales y demostrar criterio de arquitectura en un entorno donde conviven varias plataformas, algo habitual en sistemas bancarios ya existentes que hay que mantener y evolucionar. 
+CoreTransact-Mesh podría construirse con un solo lenguaje (ya sea .NET o Java) y esa sería la opción más simple, económica y rápida de mantener para un sistema nuevo. Sin embargo, este proyecto tiene un objetivo formativo y de portafolio: aprender Java 21 con Spring WebFlux (programación reactiva), practicar .NET 10 en servicios transaccionales y demostrar criterio de arquitectura en un entorno donde conviven varias plataformas, algo habitual en sistemas bancarios ya existentes que hay que mantener y evolucionar.
 
 El punto de partida es un dominio sólido de .NET/C#; WebFlux, RabbitMQ y gRPC son tecnologías que aún se están aprendiendo.
 
@@ -93,14 +94,14 @@ Enlaza a [[Invariantes-Arquitectonicas]]:
 
 ## 7. Cómo se verifica (fitness function)
 
-|Qué|Cómo|Invariante|
-|---|---|---|
-|El event loop no se bloquea|BlockHound activo en los tests de la Ingesta|INV-14|
-|Capas sin dependencias prohibidas|ArchUnit (Java) y NetArchTest (.NET) en CI|INV-06|
-|Contratos compatibles entre plataformas|Código generado desde `/contracts` en ambos builds; contract tests contra JSON Schema|INV-07|
-|Importes y fechas sin pérdida de precisión|Prueba de ida y vuelta Java → RabbitMQ → .NET con valores límite (por ejemplo `0.0001` y `999999999999.9999`) y fechas UTC|INV-07, INV-18 (si se adopta)|
-|`transactionId` presente en cada evento y log|Test que verifica la cabecera `correlationId` en los eventos publicados|INV-09|
-|Cada servicio se construye por separado|Jobs de CI independientes (JDK 21 y SDK de .NET), obligatorios para fusionar|INV-16|
+| Qué                                           | Cómo                                                                                  | Invariante                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------- |
+| El event loop no se bloquea                   | BlockHound activo en los tests de la Ingesta                                          | INV-14                        |
+| Capas sin dependencias prohibidas             | ArchUnit (Java) y NetArchTest (.NET) en CI                                            | INV-06                        |
+| Contratos compatibles entre plataformas       | Código generado desde `/contracts` en ambos builds; contract tests contra JSON Schema | INV-07                        |
+| Importes y fechas sin pérdida de precisión    | Prueba de ida y vuelta Java → RabbitMQ → .NET con valores límite y fechas UTC         | INV-07, INV-18 (si se adopta) |
+| `transactionId` presente en cada evento y log | Test que verifica la cabecera `correlationId` en los eventos publicados               | INV-09                        |
+| Cada servicio se construye por separado       | Jobs de CI independientes (JDK 21 y SDK de .NET), obligatorios para fusionar          | INV-16                        |
 
 ## 8. Plan de implementación
 

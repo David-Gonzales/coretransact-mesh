@@ -20,4 +20,4 @@ obj/
 *.log
 
 # Obsidian (configuración local de la bóveda)
-docs/.obsidian/workspace*.json
+docs/.obsidian/
