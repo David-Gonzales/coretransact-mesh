@@ -35,6 +35,8 @@ Especificación técnica, diseño arquitectónico y de datos para la implementac
 | 10  | Nuevo **modelo de lectura de estado** (`GET /transfers/{id}`)                                                                                                               | Con `202 Accepted` el cliente necesita conocer el resultado | ADR-0010 |
 | 11  | Topología RabbitMQ explícita con DLX/DLQ y reintentos                                                                                                                       | Faltaba definir fallos de consumo                           | ADR-0009 |
 | 12  | Auditoría consume `transfer.completed` **y** `transfer.failed` (el mapa solo mostraba `completed`)                                                                          | Inconsistencia                                              | ADR-0004 |
+| 13  | Importes como enteros en la unidad mínima (`amountMinor`) y fechas como instantes en UTC; fecha contable en `America/Lima`                                                  | Evitar divergencias de serialización entre Java y -NET      | ADR-0013 |
+| 14  | Spring Boot 3.x -> **Spring Boot 4.1.x**; JDK 21 por toolchain de Gradle                                                                                                    | Spring Boot 3.5 terminó su soporte OSS en junio de 2026     | ADR-0014 |
 
 ---
 
@@ -71,7 +73,7 @@ Especificación técnica, diseño arquitectónico y de datos para la implementac
 
 ### Componente 1: Microservicio de Ingesta y Validación
 
-- **Ejecución:** Java 21 / Spring Boot 3.x (Spring WebFlux).
+- **Ejecución:** Java 21 / Spring Boot 4.1.x (Spring WebFlux).
 - **Paradigma:** programación reactiva (non-blocking I/O, Project Reactor).
 - **Diseño interno:** **Arquitectura Hexagonal** (puertos y adaptadores): dominio/aplicación sin dependencias de Spring, Redis, RabbitMQ ni gRPC.
 - **Persistencia:** Redis (llaves de idempotencia, estado de transferencias, caché de cuentas).
