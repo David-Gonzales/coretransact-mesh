@@ -1,7 +1,7 @@
 ---
 id: ADR-0013
 titulo: Representación de importes y fechas
-estado: Propuesto
+estado: Aceptado
 fecha: 2026-10-10
 decisores:
   - David
