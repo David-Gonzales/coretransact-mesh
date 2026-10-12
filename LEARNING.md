@@ -35,7 +35,7 @@ Bitácora personal del proyecto. Se completa en los **15 minutos de cierre** de 
 <!-- Las entradas más recientes van arriba. -->
 
 ### 2026-10-10 · D001 · SCRUM-25 · Proyecto WebFlux hexagonal y endpoint de salud
-- **Tiempo real:** Sesión 1: 6h  (estimado: 3h) | Sesión 2: (estimado: )
+- **Tiempo real:** Sesión 1: 8h  (estimado: 3h) Paso 1, 3, 4: 10min - Paso 2. Aprendizaje: 6h - Laboratorio de Reactor 1h 50min | Sesión 2: 55 min (estimado: 1h 35min) Paso 6. Esqueleto: 10min - Paso 7. actuator/health y primer test con WebTestClient: 25min - Paso 8. Commit y pull request: 10min - Cierre: 10min | Total: 8h 55min (estimado: 4h 35min)
 - **Qué aprendí:**
   - Aprendí acerca de la programación reactiva, donde los flujos reactivos se basan en el Patrón de diseño Publisher-Subscriber donde hay un publicador de eventos y uno o más suscriptores a este publicador. También aprendí que las operaciones aplicadas a los valores enviados se expresan de forma declarativa no imperativa, es decir, uno programa la lógica del cálculo a través de operadores en lugar de describir su flujo exacto. Un flujo reactivo no se ejecturará a menos que me suscriba, pueden haber distintos operadores que alteren los datos, pero si no me suscribo no pasará nada, una analogía a esto es que los operadores funcionan como una tubería de agua, es decir, los operadores le dan forma a los tubos por dónde pasará el agua pero si la llave está cerrada el agua nunca pasará, la llave que abre el agua sería la suscripción. Además aprendí que existen 2 grandes características de la programación reactiva, `Mono` y `Flux`. En `Mono` pasan cero o 1 elemento únicamente por la tubería, como por ejemplo cuando se hace una llamada HHTP a un método para obtener el ID de un usuario, mientras que en `Flux` pasan cero o muchos elementos o colecciones como listas, arreglos, etc.
   - También existen operaciones que "aplanan" colecciones o peticiones como `Map` y `FlatMap` donde el primero transforma cada elemento de forma síncrona (por ejemplo, cambiar un String a mayúsculas) mientras que `FlatMap` transforma cada elemento de forma asíncrona devolviendo `Flux` o `Mono` "aplanando" el resultado en un único flujo final. Es decir el `Map` modifica cada elemento uno a uno, mientras que `FlatMap` transforma de forma asíncrona (1-a-N)desordenadamente. Por eso, se usa `Map` cuando hay que transformar cosas pero mantener la estructura intacta y se usa `FlatMap` cuando lo que esté dentro sean más listas o grupos y quiera romper las estructuras para juntar todo en una sola lista gigante.
@@ -146,6 +146,9 @@ Términos que fui aprendiendo, con mis palabras.
 | AMQP |Protocolo de cola de mensajería avanzada. Este es el protocolo que utiliza RabbitMQ quien conecta los tres servicios: Ingesta, Ledger y Conciliación | 2026-10-04 |
 | Integración Continua (CI) | Es lo que hace cumplir mis invariantes sin depender de mi memoria. En cada Push que hago a una rama remota un servidor lo compila y ejecuta automáticamente las pruebas y verificaciones, y me avisa si algo falla. Por ejemplo, en mi proyecto GitHub Actions compilaría Java con JDK 21 y .NET con su SDK y ejecutaría tests, ArchUnit y NetArchTest. Si algo falla, el PR no se fusiona | 2026-10-04 |
 | ArchUnit | Verifica reglas como por ejemplo, que Ingesta nunca acceda a PostgreSQL ni a MongoDB. Lo que hace esta prueba unitaria es hacer cumplor que el servicio de Ingesta no tenga dependencias a drivers de estos contenedores  | 2026-10-04 |
+| Backpressure | asd | 2026-10-10 |
+| Publisher/Subscriber | asd | 2026-10-10 |
+| Event Loop |  | 2026-10-10 |
 
 
 ---
